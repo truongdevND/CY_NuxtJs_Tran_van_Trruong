@@ -1,40 +1,67 @@
 export default defineEventHandler(async (event) => {
     try {
-        const url = new URL('https://newsapi.org/v2/everything');
+        const query = getQuery(event)
+        const currentPage = parseInt(query.page) || 1
+        
+        const today = new Date()
+        const formattedDate = today.toISOString().split('T')[0]
+        
+        const url = new URL('https://newsapi.org/v2/everything')
         const params = new URLSearchParams({
             'q': 'tesla',
-            'from': '2024-10-08',
+            'from': `'${formattedDate}'`,
             'sortBy': 'publishedAt',
-            'apiKey': '49b8dd3bb9e64f7a94ff3b17211f46c1'
-        });
+            'pageSize': '6',
+            'page': currentPage.toString(),
+            'apiKey': '0b1127b957f0466cab330ad0cb4bab57'
+        })
         
-        url.search = params.toString();
+        url.search = params.toString()
 
         const response = await fetch(url, {
             headers: {
-                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0',
+                'X-Api-Key': '0b1127b957f0330ad0cb4bab57',
+                'Accept': 'application/json'
             },
-        });
+        })
         
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorData = await response.json().catch(() => null)
+            throw new Error(
+                `HTTP error! status: ${response.status}, message: ${errorData?.message || 'Unknown error'}`
+            )
         }
         
-        const data = await response.json();
+        const data = await response.json()
         
+        const totalResults = data.totalResults
+        const totalPages = Math.ceil(totalResults / 8)
+        const hasNextPage = currentPage < totalPages
+
         return {
             statusCode: 200,
-            data: data
-        };
+            data: {
+                articles: data.articles,
+                pagination: {
+                    currentPage,
+                    totalPages,
+                    totalResults,
+                    hasNextPage
+                }
+            }
+        }
         
-    } catch (error) {
-        console.error('Error fetching news:', error);
+    }
+
+    catch (error) {
+        console.error('Error fetching news:', error)
         
         return {
-            statusCode: 500,
+            statusCode: error.response?.status || 500,
             error: 'Failed to fetch news data',
             message: error.message,
             stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
-        };
+        }
     }
-});
+})
