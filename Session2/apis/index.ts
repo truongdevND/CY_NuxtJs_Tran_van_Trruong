@@ -1,16 +1,16 @@
-export const BASE_URL = process.env.BASE_URL || 'http://152.42.240.131/api/v1'; 
+export const BASE_URL = 'http://152.42.240.131/api/v1'; 
 
 export const defaultHeaders = {
   'Content-Type': 'application/json',
 };
-export const getAuthHeaders = () => {
-  const token = localStorage.getItem('token'); 
-  if (token) {
+
+export const getAuthHeaders = (cookies:any) => {
+  if (cookies) {
     return {
       ...defaultHeaders,
-      Authorization: `Bearer ${token}`, 
+      Authorization: `Bearer ${cookies}`,  
     };
   }
 
-  return defaultHeaders;
+  return defaultHeaders;  
 };

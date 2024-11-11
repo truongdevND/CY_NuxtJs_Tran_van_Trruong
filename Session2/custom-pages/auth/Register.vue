@@ -1,6 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-purple-600"
-    style="background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg); background-repeat: no-repeat; background-size: cover;">
+  <div class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-gray-50 to-gray-400">
 
     <div class="opacity-[0.7] max-w-md w-full">
       <form @submit.prevent="handleSubmit" class="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-8">
@@ -83,7 +82,7 @@
 </template>
 
 <script setup>
-import { register } from '~/apis/auth.ts';
+import { register } from '~/service/auth.ts';
 const email = ref('')
 const username = ref('')
 const password = ref('')

@@ -126,7 +126,7 @@ const profile = ref(false);
       </div>
     </div>
   </header>
-  <slot></slot>
+  <slot ></slot>
   <footer class="bg-[#444444] py-12 px-6 font-sans tracking-wide">
       <div class="flex flex-col items-center gap-6">
 
@@ -176,8 +176,4 @@ const profile = ref(false);
     </footer>
 </template>
 
-
-function ref(arg0: string) {
-  throw new Error("Function not implemented.");
-}
 <style scoped></style>

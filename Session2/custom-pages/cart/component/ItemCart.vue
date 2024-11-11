@@ -6,23 +6,16 @@
                                 </div>
 
                                 <div class="sm:border-l sm:pl-4 sm:border-gray-300 w-full">
-                                    <h3 class="text-xl font-bold text-gray-800">HP ProBook 455 (15.6) 39.6 cm G9 Business Laptop</h3>
+                                    <h3 class="text-2xl font-bold text-gray-800">HP ProBook 455 (15.6) 39.6 cm G9 Business Laptop</h3>
 
-                                    <ul class="mt-4 text-sm text-gray-800 space-y-2">
-                                        <li>AMD Ryzen™ 5 processor</li>
-                                        <li>FreeDOS</li>
-                                        <li>16 GB DDR4 RAM</li>
-                                        <li>512 GB PCIe® NVMe™ SSD Hard Drive</li>
-                                        <li><a href="javascript:void(0);" class="text-blue-600">(See more Specifications)</a></li>
-
-                                    </ul>
+                                    <p class="mt-4 text-sm text-gray-800 space-y-2">
+                                      Hello  myfrieend </p>
 
                                     <hr class="border-gray-300 my-4" />
 
                                     <div class="flex items-center justify-between flex-wrap gap-4">
 
                                         <div class="flex items-center gap-3">
-                                            <h4 class="text-sm font-bold text-gray-800">Qty:</h4>
                                             <button type="button"
                                                 class="flex items-center justify-center w-5 h-5 bg-blue-600 outline-none rounded-full">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-2 fill-white" viewBox="0 0 124 124">

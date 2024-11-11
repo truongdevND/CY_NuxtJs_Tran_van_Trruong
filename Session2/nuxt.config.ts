@@ -6,7 +6,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   components: true,
   
-  // nuxt.config.ts
 
   css: ['~/assets/css/main.css'],
   postcss: {

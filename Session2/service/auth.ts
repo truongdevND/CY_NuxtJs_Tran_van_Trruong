@@ -1,7 +1,7 @@
-import { BASE_URL, getAuthHeaders, defaultHeaders } from './index';
+import { BASE_URL, defaultHeaders } from './index';
 
 export const login = async (email: string, password: string) => {
-  const response = await fetch(`${BASE_URL}/login`, {
+  const response = await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
     headers: defaultHeaders,
     body: JSON.stringify({ email, password }),
@@ -12,7 +12,7 @@ export const login = async (email: string, password: string) => {
 };
 
 export const register = async ( email: string, password: string, name:string ) => {
-  const response = await fetch(`${BASE_URL}/signup`, { 
+  const response = await fetch(`${BASE_URL}/auth/signup`, { 
     method: 'POST',
     headers: defaultHeaders,
     body: JSON.stringify({ email, password, name }),
@@ -22,10 +22,10 @@ export const register = async ( email: string, password: string, name:string ) =
   return await response.json();
 };
 
-export const logout = async (cookies:any) => {
-  const response = await fetch(`${BASE_URL}/logout`, {
+export const logout = async () => {
+  const response = await fetch(`${BASE_URL}/auth/logout`, {
     method: 'POST',
-    headers: getAuthHeaders(cookies),
+    headers: defaultHeaders,
   });
 
   if (!response.ok) throw new Error('Logout failed');
