@@ -1,10 +1,13 @@
 <template>
-  <div class="flex flex-col justify-between">
-    <Header/>
-    <slot ></slot>
-    <Footer/>
+  <div class="flex flex-col min-h-screen">
+    <Header />
+    <div class="flex-grow">
+      <slot ></slot>
+    </div>
+    <Footer />
   </div>
 </template>
+
 
 <script>
 import Header from '~/components/Header.vue';

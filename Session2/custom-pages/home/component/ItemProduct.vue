@@ -14,11 +14,10 @@ export default {
   <div 
     v-for="item in products" 
     :key="item.id" 
-    class="relative m-10 flex w-full  justify-between flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+    class=" m-10 flex w-full  justify-between flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
   >
-  <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-    <img class="object-cover" :src="item.preview_img_path" alt="product image" />
-    <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>
+  <a class=" mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
+    <img class="object-cover w-full h-auto" :src="item.preview_img_path" alt="product image" />
   </a>
   <div class="mt-4 px-5 pb-5">
     <a href="#">

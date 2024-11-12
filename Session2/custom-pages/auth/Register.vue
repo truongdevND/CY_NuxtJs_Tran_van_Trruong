@@ -87,7 +87,6 @@ const email = ref('')
 const username = ref('')
 const password = ref('')
 const showPassword = ref(false)
-const rememberMe = ref(false)
 
 definePageMeta({
   layout: 'nonav-layout'
@@ -95,7 +94,8 @@ definePageMeta({
 
 const handleSubmit = async () => {
   try {
-    const data = await register(email.value, password.value, username.value);
+    await register(email.value, password.value, username.value);
+    navigateTo('/login')
 
   } catch (error) {
     console.error('register failed:', error);

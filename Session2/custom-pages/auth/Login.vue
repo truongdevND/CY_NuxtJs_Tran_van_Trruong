@@ -95,7 +95,7 @@ const handleSubmit = async () => {
       localStorage.setItem('users', JSON.stringify(user))
       cookieToken.value = data.token
       console.log("Login successful:", cookieToken.value)
-      alert("Login successful!")
+     
       navigateTo('/home')
     }
 
