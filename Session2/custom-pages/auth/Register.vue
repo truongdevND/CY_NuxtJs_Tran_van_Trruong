@@ -82,7 +82,7 @@
 </template>
 
 <script setup>
-import { register } from '~/service/auth.ts';
+import { register } from '~/service/auth';
 const email = ref('')
 const username = ref('')
 const password = ref('')
@@ -97,10 +97,6 @@ const handleSubmit = async () => {
   try {
     const data = await register(email.value, password.value, username.value);
 
-    localStorage.setItem('token', data.token);
-
-
-  
   } catch (error) {
     console.error('register failed:', error);
     alert('register failed. Please check your credentials and try again.');
