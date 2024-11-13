@@ -18,21 +18,18 @@
       </div>
 
       <div
-        class=" grid gap-7 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-5"
+        class="grid gap-7 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-5"
       >
         <ItemProduct
           v-for="item in products"
           :key="item.id"
           :item="item"
           @add="cartStore.addToCart(item)"
+          @click="goToProduct(item.id)"
         />
       </div>
 
-      <div v-if="isLoading" class="flex justify-center my-4">
-        <div
-          class="animate-spin rounded-full h-[100px] w-[100px] border-t-[5px] border-blue-500"
-        ></div>
-      </div>
+      <Loading v-if="isLoading" />
 
       <div
         v-if="!isLoading && products.length === 0"
@@ -52,6 +49,8 @@ import ItemProduct from "./components/ItemProduct.vue";
 import SearchBar from "./components/ComponentInput.vue";
 import ComponentFilter from "./components/ComponentFilter.vue";
 import useCartStore from "~/stores/cartStore";
+import { useRouter } from "vue-router";
+import Loading from "~/components/Loading.vue";
 
 const products = ref([]);
 const categories = ref([]);
@@ -62,6 +61,7 @@ const minimum = ref(0);
 const maximum = ref(0);
 const slug = ref("");
 const cartStore = useCartStore();
+const router = useRouter();
 
 const categoryId = ref();
 
@@ -154,4 +154,8 @@ onUnmounted(() => {
     window.removeEventListener("scroll", handleScroll);
   }
 });
+
+const goToProduct = (id) => {
+  router.push(`/product/${id}`);
+};
 </script>

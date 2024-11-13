@@ -30,3 +30,14 @@ export const getProducts = async (
   if (!response.ok) throw new Error('Failed to fetch products');
   return await response.json();
 };
+
+export const getProductById = async (cookie: any,id:Number) => {
+  const response = await fetch(`${BASE_URL}/products/${id}`, {
+    method: 'GET',
+    headers: getAuthHeaders(cookie),
+  });
+
+  if (!response.ok) throw new Error('Failed to fetch products');
+  return await response.json();
+};
+

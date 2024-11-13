@@ -20,19 +20,19 @@ export default {
 
 <template>
   <div
-    class=" flex w-full justify-between flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+    class=" cursor-pointer flex w-full justify-between flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
   >
-    <a class="mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
+    <div class="mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" >
       <img
         class="object-cover w-full h-auto"
         :src="item.preview_img_path"
         alt="product image"
       />
-    </a>
+    </div>
     <div class="mt-4 px-5 pb-5">
-      <a href="#">
+      <div>
         <h5 class="text-xl tracking-tight text-slate-900">{{ item.name }}</h5>
-      </a>
+      </div>
       <p class="text-sm mt-4 text-end text-gray-400 font-medium">
         Số lượng còn lại: <span>{{ item.stock }}</span>
       </p>
