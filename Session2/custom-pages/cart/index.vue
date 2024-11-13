@@ -1,3 +1,11 @@
+<script setup>
+import ItemCart from "./component/ItemCart"
+import PayNow from "./component/PayNow"
+import useCartStore from "~/stores/cartStore"
+const cartStore = useCartStore();
+
+</script>
+
 <template>
   <div class="bg-gray-50 py-8 antialiased md:py-12">
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
@@ -39,32 +47,20 @@
       <div class="font-sans">
         <div class="grid lg:grid-cols-3 gap-4 max-lg:max-w-3xl mx-auto">
           <div class="lg:col-span-2 bg-white divide-y divide-gray-300 px-4">
-            <ItemCart />
-            <ItemCart />
-            <ItemCart />
+            <p v-if="cartStore.cartList.length === 0" class="text-center text-gray-500 py-4">
+              Giỏ hàng trống
+            </p>
+            <ItemCart v-else />
+
           </div>
-
-          <div class="bg-gradient-to-tl from-[#B0EBB4] via-[#BFF6C3] to-[#E0FBE2] p-6 lg:sticky top-0">
-            <ul class="text-gray-800 divide-y divide-gray-300">
-              <li class="flex flex-wrap gap-4 text-sm pt-4 font-bold">
-                Total <span class="ml-auto">$54.00</span>
-              </li>
-            </ul>
-
-
-
-            <button type="button"
-              class="mt-8 max-w-full text-sm px-6 py-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold tracking-wide rounded-lg">
-              Pay Now
-            </button>
-          </div>
+          <PayNow />
+         
         </div>
+      
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-</script>
 
 <style lang="scss" scoped></style>

@@ -1,15 +1,6 @@
 import { BASE_URL, getAuthHeaders, defaultHeaders } from './index';
 
-export const getProducts = async (cookie: any, currentPage: any) => {
-  const response = await fetch(`${BASE_URL}/products?page=${currentPage}`, {
-    method: 'GET',
-    headers: getAuthHeaders(cookie),
-  });
-
-  if (!response.ok) throw new Error('Failed to fetch products');
-  return await response.json();
-};
-export const filterProducts = async (
+export const getProducts = async (
   cookie: any,
   currentPage: any,
   name: string = '',
@@ -20,11 +11,11 @@ export const filterProducts = async (
 ) => {
   const queryParams: any = {
     page: currentPage,
-    name: name || undefined,
-    category_id: category_id || undefined,          
-    min_price: min_price || undefined,
-    max_price: max_price || undefined,
-    category_slug: category_slug || undefined
+    name: name || '',
+    category_id: category_id || '',          
+    min_price: min_price || '',
+    max_price: max_price || '',
+    category_slug: category_slug || ''
   };
 
   const queryString = new URLSearchParams(queryParams).toString();

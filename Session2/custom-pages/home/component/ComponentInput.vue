@@ -14,25 +14,22 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'SearchBar',
-    props: {
-        modelValue: {
-            type: String,
-            required: true,
-        }
-    },
-    emits: ['update:modelValue'],
-    setup(props, { emit }) {
-        const updateSearch = (event) => {
-            emit('update:modelValue', event.target.value);
-        };
+<script setup>
+import { defineProps } from 'vue';
 
-        return { updateSearch };
-    }
+const props = defineProps({
+    modelValue: {
+        type: String,
+        required: true,
+    },
+});
+
+const updateSearch = (event) => {
+    emit('update:modelValue', event.target.value);
 };
 </script>
+
+
 
 <style scoped>
 input {
