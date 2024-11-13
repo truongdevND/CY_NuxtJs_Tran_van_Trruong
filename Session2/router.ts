@@ -15,9 +15,14 @@ export const routes = [
         file: '~/custom-pages/home/Index.vue'
     },
     {
-        name: 'Product__Carrt',
+        name: 'Product__Cart',
         path: '/cart',
         file: '~/custom-pages/cart/Index.vue'
+    },
+    {
+        name: 'Order__History',
+        path: '/order-history',
+        file: '~/custom-pages/orderHistory/Index.vue'
     },
 
 

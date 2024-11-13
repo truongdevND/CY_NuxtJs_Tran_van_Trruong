@@ -8,15 +8,15 @@ const cartStore = useCartStore();
 
 
 <template>
-    <div v-for="item in cartStore.cartList" :key="item.id"
-        class="p-6 bg-white shadow-[0_0px_4px_0px_rgba(6,81,237,0.2)] rounded-md relative">
+    <div class="max-h-[550px] p-3 overflow-y-auto">
+        <div v-for="item in cartStore.cartList" :key="item.id"
+        class="p-6 bg-white shadow-[0_0px_4px_0px_rgba(6,81,237,0.2)] mt-3 border border-gray-400  rounded-md relative">
 
         
         <div class="flex items-center max-sm:flex-col gap-4 max-sm:gap-6">
             <div class="w-52 shrink-0">
                 <img :src='item.preview_img_path' class="w-full h-full object-contain" />
             </div>
-
             <div class="sm:border-l sm:pl-4 sm:border-gray-300 w-full">
                 <h3 class="text-xl font-bold text-gray-800">{{ item.name }}</h3>
 
@@ -66,6 +66,8 @@ const cartStore = useCartStore();
             </div>
         </div>
     </div>
+    </div>
+   
 </template>
 
 

@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 
-export const useCartStore = defineStore('cart', () => {
+ const useCartStore = defineStore('cart', () => {
   const cartList = ref([]);
 
-  const addToCart = (item) => {
+  const addToCart = (item:any) => {
     const existingItem = cartList.value.find(cartItem => cartItem.id === item.id);
     if (existingItem) {
       existingItem.quantity++;
@@ -14,7 +14,7 @@ export const useCartStore = defineStore('cart', () => {
     }
   };
 
-  const updateQuantity = (itemId, change) => {
+  const updateQuantity = (itemId:Number, change:Number) => {
     const item = cartList.value.find(cartItem => cartItem.id === itemId);
     if (item) {
       const newQuantity = item.quantity + change;
@@ -27,27 +27,26 @@ export const useCartStore = defineStore('cart', () => {
     }
   };
 
-  const removeFromCart = (itemId) => {
+  const removeFromCart = (itemId:Number) => {
     cartList.value = cartList.value.filter(item => item.id !== itemId);
   };
 
   const totalPrice = computed(() => {
     return cartList.value.reduce((sum, item) => sum + item.total, 0).toFixed(2);
   });
+  const clearCart  = () =>{
+    cartList.value = [];
+  }
 
-  return { cartList, addToCart, updateQuantity, removeFromCart, totalPrice };
+  return { cartList, addToCart, updateQuantity, removeFromCart, totalPrice, clearCart };
 }, {
   
     persist: {
       storage: persistedState.localStorage,
       key: 'my-cart',
       paths: ['cartList'],
-      beforeRestore: (ctx) => {
-        console.log('Before restore:', ctx)
-      },
-      afterRestore: (ctx) => {
-        console.log('After restore:', ctx)
-      },
     }
   }
 );
+
+export default useCartStore;
