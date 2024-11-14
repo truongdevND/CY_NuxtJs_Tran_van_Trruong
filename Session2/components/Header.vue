@@ -6,14 +6,14 @@
       <div
         class="w-full flex flex-wrap items-center lg:gap-y-4 gap-y-6 gap-x-4"
       >
-        <a class="text-[30px] font-bold" href="/product">SHOPPING </a>
+        <a class="text-[30px] font-bold" href="/products">SHOPPING </a>
 
         <ul class="hidden gap-6 md:flex ml-8">
           <li
             class="max-lg:border-b max-lg:py-3 relative lg:after:absolute lg:after:bg-pink-500 lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[3px] lg:after:block lg:after:-bottom-2 lg:after:transition-all lg:after:duration-300"
           >
             <div class="text-[#333] block text-sm uppercase font-semibold">
-              <NuxtLink to="/products"> home</NuxtLink>
+              <a href="/products"> home</a>
             </div>
           </li>
           <li
