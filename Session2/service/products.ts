@@ -30,7 +30,7 @@ export const getProducts = async (
   return await response.json();
 };
 
-export const getProductById = async () => {
+export const getProductById = async (id) => {
   const response = await fetch(`${BASE_URL}/products/${id}`, {
     method: 'GET',
     headers: getAuthHeaders(),

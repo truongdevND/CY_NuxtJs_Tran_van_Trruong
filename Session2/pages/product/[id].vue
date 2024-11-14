@@ -7,11 +7,10 @@ const cartStore = useCartStore();
 
 const route = useRoute();
 const productId = route.params.id;
-const cookieToken = useCookie("token");
 const productById = ref(null);
 
 const fetchdata = async () => {
-  const response = await getProductById(cookieToken.value, productId);
+  const response = await getProductById(productId);
   productById.value = response;
 };
 watchEffect(() => {

@@ -27,7 +27,6 @@ export default defineNuxtConfig({
         pages.push(route);
       });
 
-      // Function to remove routes based on a filename pattern
       function removePagesMatching(pattern: RegExp, pages: NuxtPage[] = []) {
         const pagesToRemove: NuxtPage[] = [];
         for (const page of pages) {
