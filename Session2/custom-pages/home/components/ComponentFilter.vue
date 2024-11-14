@@ -8,7 +8,7 @@
     </svg>
 
     <div v-if="filter"
-      class="box absolute right-[5px] top-[30px] z-999 rounded-xl border border-gray-300 bg-white p-6 w-[300px] md:max-w-sm">
+      class="box absolute z-40 right-[5px] top-[30px] z-999 rounded-xl border border-gray-300 bg-white p-6 w-[300px] md:max-w-sm">
       <h6 class="font-medium text-base leading-7 uppercase text-black mb-5">
         Filter Product
       </h6>
@@ -52,65 +52,58 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 
-export default {
-  name: "ComponentFilter",
-  props: {
-    category: {
-      type: Array,
-      default: () => [],
-    },
-    minimum: {
-      type: Number,
-      default: 0,
-    },
-    maximum: {
-      type: Number,
-      default: 0,
-    },
-    selectedCategoryId: {
-      type: Number,
-      default: 0,
 
-    }
+
+const props = defineProps({
+  category: {
+    type: Array,
+    default: () => [],
   },
-  setup(props, { emit }) {
-    const filter = ref(false);
-
-    const toggleFilter = () => {
-      filter.value = !filter.value;
-    };
-
-    const updateMinimum = (event) => {
-      const value = Number(event.target.value);
-      emit("update:minimum", value);
-    };
-
-    const updateMaximum = (event) => {
-      const value = Number(event.target.value);
-      emit("update:maximum", value);
-    };
-    const updateSelectcategory = (event) => {
-      const value = String(event.target.value);
-      emit("update:selectedCategoryId", value);
-    };
-
-
-    const emitSearch = () => {
-      emit("search", { minimum: props.minimum, maximum: props.maximum, selectedCategoryId: props.selectedCategoryId });
-    };
-
-    return {
-      filter,
-      toggleFilter,
-      emitSearch,
-      updateMinimum,
-      updateMaximum,
-      updateSelectcategory
-      ,
-    };
+  minimum: {
+    type: Number,
+    default: 0,
   },
+  maximum: {
+    type: Number,
+    default: 0,
+  },
+  selectedCategoryId: {
+    type: Number,
+    default: 0,
+
+  }
+});
+
+const emit = defineEmits(['update:minimum', 'update:maximum', 'update:selectedCategoryId', 'search']);
+
+const filter = ref(false);
+
+const toggleFilter = () => {
+  filter.value = !filter.value;
 };
+
+const updateMinimum = (event) => {
+  const value = Number(event.target.value);
+  emit("update:minimum", value);
+};
+
+const updateMaximum = (event) => {
+  const value = Number(event.target.value);
+  emit("update:maximum", value);
+};
+const updateSelectcategory = (event) => {
+  const value = String(event.target.value);
+  emit("update:selectedCategoryId", value);
+};
+
+
+const emitSearch = () => {
+  emit("search", { minimum: props.minimum, maximum: props.maximum, selectedCategoryId: props.selectedCategoryId });
+};
+
+
+
 </script>

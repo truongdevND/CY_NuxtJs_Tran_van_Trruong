@@ -61,20 +61,7 @@
         </div>
         <div class="flex items-center justify-around w-full sm:pl-28 lg:pl-0">
         
-          <div
-            class="flex flex-col justify-center items-start max-sm:items-center"
-          >
-            <p
-              class="font-normal text-lg text-gray-500 leading-8 mb-2 text-left whitespace-nowrap"
-            >
-              Delivery Expected by
-            </p>
-            <p
-              class="font-semibold text-lg leading-8 text-black text-left whitespace-nowrap"
-            >
-             {{ formatDate(item.created_at) }}
-            </p>
-          </div>
+         
         </div>
       </div>
       <svg

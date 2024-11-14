@@ -63,6 +63,7 @@
           </div>
         </div>
 
+       
 
 
         <button type="submit"
@@ -78,11 +79,15 @@
         </p>
       </form>
     </div>
+    <DialogNotification />
   </div>
 </template>
 
 <script setup>
 import { register } from '~/service/auth';
+import notificationStore from "~/stores/notificationStore";
+const useNotificationStore = notificationStore();
+
 const email = ref('')
 const username = ref('')
 const password = ref('')
@@ -98,8 +103,10 @@ const handleSubmit = async () => {
     navigateTo('/login')
 
   } catch (error) {
-    console.error('register failed:', error);
-    alert('register failed. Please check your credentials and try again.');
+    useNotificationStore.dialog(true);
+    useNotificationStore.imageMessage("https://media.istockphoto.com/id/1407160246/vector/danger-triangle-icon.jpg?s=612x612&w=0&k=20&c=BS5mwULONmoEG9qPnpAxjb6zhVzHYBNOYsc7S5vdzYI=");
+    useNotificationStore.titleMessage("Error");
+    useNotificationStore.mess("Failed to place order: " + error.message);
   }
 };
 </script>

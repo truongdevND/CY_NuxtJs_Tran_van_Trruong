@@ -1,7 +1,6 @@
 <script setup>
-function changeImage(src) {
-  document.getElementById("mainImage").src = src;
-}
+
+
 </script>
 <template>
   <div class="bg-gray-100">

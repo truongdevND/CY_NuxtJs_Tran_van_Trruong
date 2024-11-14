@@ -1,40 +1,22 @@
 <template>
   <div class="bg-gray-50 py-8 antialiased md:py-12">
     <div class="mx-auto max-w-screen-2xl px-4 2xl:px-0">
-      <div
-        class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8"
-      >
+      <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
         <h2 class="mt-3 text-xl font-semibold text-gray-900 sm:text-2xl">
           Products
         </h2>
         <SearchBar v-model="searchQuery" @search="handleSearch" />
-        <ComponentFilter
-          v-model:minimum="minimum"
-          v-model:maximum="maximum"
-          v-model:selected-category-id="categoryId"
-          :category="categories"
-          @search="handleSearch"
-        />
+        <ComponentFilter v-model:minimum="minimum" v-model:maximum="maximum" v-model:selected-category-id="categoryId"
+          :category="categories" @search="handleSearch" />
       </div>
 
-      <div
-        class="grid gap-7 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-5"
-      >
-        <ItemProduct
-          v-for="item in products"
-          :key="item.id"
-          :item="item"
-          @add="cartStore.addToCart(item)"
-          @click="goToProduct(item.id)"
-        />
+      <div class="grid gap-7 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-5">
+        <ItemProduct v-for="item in products" :key="item.id" :item="item" @add="cartStore.addToCart(item)" />
       </div>
 
       <Loading v-if="isLoading" />
 
-      <div
-        v-if="!isLoading && products.length === 0"
-        class="text-center cursor-pointer py-8"
-      >
+      <div v-if="!isLoading && products.length === 0" class="text-center cursor-pointer py-8">
         <p class="text-gray-500">No products found.</p>
       </div>
     </div>
@@ -49,6 +31,8 @@ import ItemProduct from "./components/ItemProduct.vue";
 import SearchBar from "./components/ComponentInput.vue";
 import ComponentFilter from "./components/ComponentFilter.vue";
 import useCartStore from "~/stores/cartStore";
+import useProductStore from "~/stores/productStore";
+
 import { useRouter } from "vue-router";
 import Loading from "~/components/Loading.vue";
 
@@ -61,14 +45,12 @@ const minimum = ref(0);
 const maximum = ref(0);
 const slug = ref("");
 const cartStore = useCartStore();
-const router = useRouter();
+const productStore = useProductStore();
 
 const categoryId = ref();
 
 const { data, pending, refresh } = useAsyncData("products", async () => {
-  const cookieToken = useCookie("token");
   const response = await getProducts(
-    cookieToken.value,
     currentPage.value,
     searchQuery.value,
     categoryId.value,
@@ -88,6 +70,7 @@ const { data, pending, refresh } = useAsyncData("products", async () => {
       currentPage.value === 1
         ? response.data
         : [...products.value, ...response.data];
+      
     hasMorePages.value = currentPage.value < Math.ceil(response.total / 10);
   } else {
     hasMorePages.value = false;
@@ -95,19 +78,7 @@ const { data, pending, refresh } = useAsyncData("products", async () => {
 
   return response.data;
 });
-const fetchCategory = async () => {
-  const cookieToken = useCookie("token");
-  const dataCategory = await getCategory(cookieToken.value);
-  if (process.server) {
-    console.log("Đang chạy trên SSR (server-side)");
-  }
-  if (process.client) {
-    console.log("Đang chạy trên CSR (client-side)");
-  }
-  if (dataCategory?.data) {
-    categories.value = dataCategory.data;
-  }
-};
+
 
 const isLoading = computed(() => pending.value);
 
@@ -143,7 +114,6 @@ watchEffect(() => {
 });
 
 onMounted(() => {
-  fetchCategory();
   if (process.client) {
     window.addEventListener("scroll", handleScroll);
   }
@@ -155,7 +125,5 @@ onUnmounted(() => {
   }
 });
 
-const goToProduct = (id) => {
-  router.push(`/product/${id}`);
-};
+
 </script>

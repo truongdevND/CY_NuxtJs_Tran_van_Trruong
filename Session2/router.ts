@@ -10,8 +10,8 @@ export const routes = [
         file: '~/custom-pages/auth/Register.vue'
     },
     {
-        name: 'Home',
-        path: '/home',
+        name: 'Product',
+        path: '/products',
         file: '~/custom-pages/home/Index.vue'
     },
     {

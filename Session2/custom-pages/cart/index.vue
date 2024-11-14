@@ -2,7 +2,6 @@
 import ItemCart from "./components/ItemCart"
 import PayNow from "./components/PayNow"
 import useCartStore from "~/stores/cartStore"
-import DialogNotification from "~/components/DialogNotification"
 const cartStore = useCartStore();
 
 </script>
@@ -25,7 +24,6 @@ const cartStore = useCartStore();
               Giỏ hàng trống
             </p>
             <ItemCart v-else />
-
           </div>
           <PayNow />
          

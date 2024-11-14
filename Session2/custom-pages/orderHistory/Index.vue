@@ -30,11 +30,10 @@ import { getCart } from "~/service/carts";
 import Loading from "~/components/Loading.vue";
 
 
-const cookieToken = useCookie("token");
 const orderData = ref(null);
 
 const fetchdata = async () => {
-  const res = await getCart(cookieToken.value);
+  const res = await getCart();
   orderData.value = res;
 };
 watchEffect(() => {

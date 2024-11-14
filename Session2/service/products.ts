@@ -1,7 +1,6 @@
 import { BASE_URL, getAuthHeaders, defaultHeaders } from './index';
 
 export const getProducts = async (
-  cookie: any,
   currentPage: any,
   name: string = '',
   category_id: number | null = null,
@@ -24,17 +23,17 @@ export const getProducts = async (
 
   const response = await fetch(url, {
     method: 'GET',
-    headers: getAuthHeaders(cookie),
+    headers: getAuthHeaders(),
   });
 
   if (!response.ok) throw new Error('Failed to fetch products');
   return await response.json();
 };
 
-export const getProductById = async (cookie: any,id:Number) => {
+export const getProductById = async () => {
   const response = await fetch(`${BASE_URL}/products/${id}`, {
     method: 'GET',
-    headers: getAuthHeaders(cookie),
+    headers: getAuthHeaders(),
   });
 
   if (!response.ok) throw new Error('Failed to fetch products');

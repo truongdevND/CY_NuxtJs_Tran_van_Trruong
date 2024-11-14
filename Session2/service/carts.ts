@@ -1,9 +1,9 @@
 import { BASE_URL, getAuthHeaders } from './index';
 
-export const getCart = async (cookie: any) => {
+export const getCart = async () => {
   const response = await fetch(`${BASE_URL}/orders`, {
     method: 'GET',
-    headers: getAuthHeaders(cookie),
+    headers: getAuthHeaders(),
   });
 
   if (!response.ok) throw new Error('Failed to fetch products');
@@ -11,7 +11,6 @@ export const getCart = async (cookie: any) => {
 };
 
 export const addOrder = async (
-  cookie: any,
   address: string,
   phone: string,
   cart_item: Array<{
@@ -29,7 +28,7 @@ export const addOrder = async (
 
   const response = await fetch(`${BASE_URL}/order`, {
     method: 'POST',
-    headers: getAuthHeaders(cookie),
+    headers: getAuthHeaders(),
     body: JSON.stringify(body),
   });
 

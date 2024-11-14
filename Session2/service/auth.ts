@@ -22,10 +22,10 @@ export const register = async ( email: string, password: string, name:string ) =
   return await response.json();
 };
 
-export const logout = async (cookies:any) => {
+export const logout = async () => {
   const response = await fetch(`${BASE_URL}/logout`, {
     method: 'POST',
-    headers: getAuthHeaders(cookies),
+    headers: getAuthHeaders(),
   });
 
   if (!response.ok) throw new Error('Logout failed');
