@@ -92,9 +92,7 @@ const goToProduct = (id) => {
         {{ availableStock <= 0 ? "Out of stock" : "Add to cart" }}
       </button>
 
-      <p v-if="cartStore.stockWarning" class="mt-2 text-sm text-red-500 text-center animate-fade-in">
-        {{ cartStore.stockWarning }}
-      </p>
+   
     </div>
   </div>
 </template>

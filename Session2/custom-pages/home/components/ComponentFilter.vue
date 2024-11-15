@@ -41,7 +41,7 @@
 
       <div
         v-if="isFilterOpen"
-        class="box absolute z-40 right-[5px] top-[30px] z-999 rounded-xl border border-gray-300 bg-white p-6 w-[300px] md:max-w-sm"
+        class="box absolute z-40 right-[5px] top-[50px] z-999 rounded-xl border border-gray-300 bg-white p-6 w-[300px] md:max-w-sm"
       >
         <h6 class="font-medium text-base leading-7 uppercase text-black mb-5">
           Filter Product

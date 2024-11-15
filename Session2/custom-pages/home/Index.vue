@@ -106,14 +106,11 @@ watch(
 );
 
 onMounted(() => {
-  if (process.client) {
+
     window.addEventListener("scroll", handleScroll);
-  }
 });
 
-onUnmounted(() => {
-  if (process.client) {
+onUnmounted(() => { 
     window.removeEventListener("scroll", handleScroll);
-  }
 });
 </script>

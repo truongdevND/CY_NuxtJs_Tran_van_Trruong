@@ -14,7 +14,9 @@ const useCartStore = defineStore(
     };
 
     const addToCart = (item: any) => {
-      const existingItem = cartList.value.find((cartItem) => cartItem.id === item.id);
+      const existingItem = cartList.value.find(
+        (cartItem) => cartItem.id === item.id
+      );
 
       if (existingItem) {
         if (!checkStock(item)) {
@@ -22,15 +24,17 @@ const useCartStore = defineStore(
         }
         existingItem.quantity++;
         existingItem.total = existingItem.quantity * existingItem.price;
+        existingItem.stockAvailable -= 1;
       } else {
         if (!checkStock(item)) {
           return false;
         }
+        const checkstock = item.stock - 1;
         cartList.value.push({
           ...item,
           quantity: 1,
           total: item.price,
-          stockAvailable: item.stock,
+          stockAvailable: checkstock,
         });
       }
       return true;
@@ -46,6 +50,7 @@ const useCartStore = defineStore(
           if (newQuantity > 0) {
             item.quantity = newQuantity;
             item.total = newQuantity * item.price;
+            item.stockAvailable += 1;
           } else {
             removeFromCart(itemId);
           }
@@ -54,6 +59,8 @@ const useCartStore = defineStore(
         if (!checkStock(item, change)) {
           return false;
         }
+        item.stockAvailable -= 1;
+
         item.quantity = newQuantity;
         item.total = newQuantity * item.price;
         return true;

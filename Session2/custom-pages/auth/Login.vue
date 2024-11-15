@@ -48,14 +48,6 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex items-center">
-            <input type="checkbox" id="remember" v-model="rememberMe"
-              class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500" />
-            <label for="remember" class="ml-2 text-sm text-gray-600">Remember me</label>
-          </div>
-          <a href="#" class="text-sm text-blue-600 hover:text-blue-800">Forgot password?</a>
-        </div>
 
         <button type="submit"
           class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition duration-200">
@@ -96,9 +88,7 @@ const handleSubmit = async () => {
     if (data && data.token) {
       const user = { id: data.user.id, username: data.user.name }
       localStorage.setItem('users', JSON.stringify(user))
-      cookieToken.value = data.token
-      console.log("Login successful:", cookieToken.value)
-     
+      cookieToken.value = data.token     
       navigateTo('/products')
     }
 
